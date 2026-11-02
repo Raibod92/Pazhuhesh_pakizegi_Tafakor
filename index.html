@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10213f">
+  <title>پاکیزگی حیاط مدرسه | پژوهش تفکر و سبک زندگی</title>
+  <style>
+    :root{
+      --navy:#122544;--navy2:#1d4261;--teal:#0d9b8b;--mint:#9de4d1;
+      --blue:#7da6ce;--gold:#f1c36e;--ink:#20334b;--muted:#667a91;
+      --paper:#edf3f8;--line:#e0e9f1;--white:#fff;--shadow:0 22px 60px rgba(20,43,76,.10);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--ink);font-family:"Vazirmatn","IRANSansX","IRANSans","Segoe UI",Tahoma,sans-serif;
+      line-height:1.9;letter-spacing:-.12px;
+      background:radial-gradient(circle at 8% 9%,rgba(117,174,219,.17),transparent 25%),
+                 radial-gradient(circle at 93% 82%,rgba(98,205,177,.16),transparent 27%),
+                 linear-gradient(135deg,#f3f7fb,#edf3f8 55%,#f7fafc);
+    }
+    button{font:inherit;cursor:pointer}
+    .topbar{
+      position:sticky;top:0;z-index:30;min-height:76px;padding:10px max(18px,calc((100vw - 1440px)/2));
+      display:flex;align-items:center;justify-content:space-between;gap:14px;color:#fff;
+      background:linear-gradient(110deg,#101e3b 0%,#173558 58%,#17645e 100%);
+      box-shadow:0 12px 34px rgba(12,29,55,.22);border-bottom:1px solid rgba(255,255,255,.13)
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:15px;min-width:0}
+    .brand-mark{width:43px;height:43px;flex:none;border-radius:15px;display:grid;place-items:center;color:#12324a;font-size:23px;
+      background:linear-gradient(145deg,#b9f2df,#62c6b1);box-shadow:0 8px 22px rgba(104,215,190,.25)}
+    .brand small{display:block;font-size:10px;color:#c7dce8;font-weight:500;line-height:1.5}
+    .top-actions{display:flex;gap:8px;align-items:center}
+    .btn{border:0;border-radius:13px;padding:10px 16px;font-size:12px;font-weight:800;transition:.2s;display:inline-flex;gap:7px;align-items:center;justify-content:center}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(135deg,#12a995,#087d75);color:#fff;box-shadow:0 7px 18px rgba(13,155,139,.22)}
+    .btn-light{background:#fff;color:#173452}.btn-ghost{color:#fff;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20)}
+    .btn-outline{background:#fff;color:#233c58;border:1px solid #dce6ee}
+    .shell{max-width:1460px;margin:30px auto;padding:0 22px;display:grid;grid-template-columns:265px minmax(0,1fr);gap:24px;align-items:start}
+    .sidebar{position:sticky;top:98px;background:rgba(255,255,255,.90);backdrop-filter:blur(15px);border:1px solid #dce6ef;border-radius:23px;padding:17px;box-shadow:0 16px 45px rgba(26,51,83,.08)}
+    .side-title{font-size:12px;font-weight:900;color:#516780;padding:7px 9px 14px}
+    .nav-list{display:grid;gap:6px}
+    .nav-btn{width:100%;border:0;background:transparent;text-align:right;color:#566b83;border-radius:13px;padding:10px 11px;display:flex;align-items:center;gap:10px;font-size:12px;transition:.18s}
+    .nav-btn:hover{background:#f1f7fa;color:#1a3a58}
+    .nav-btn.active{background:linear-gradient(100deg,#e3f6f0,#edf4fc);color:#087b70;font-weight:900;box-shadow:inset 0 0 0 1px #d1eee5}
+    .nav-num{width:28px;height:28px;flex:none;border-radius:9px;display:grid;place-items:center;background:#eef3f7;color:#60748b;font-size:10px;font-weight:900}
+    .nav-btn.active .nav-num{color:#fff;background:linear-gradient(140deg,#12a995,#087a71);box-shadow:0 4px 10px rgba(9,135,123,.2)}
+    .side-credit{margin-top:16px;padding:13px;border-radius:14px;background:#f5f9fb;border:1px solid #e7eef3;color:#72839a;font-size:10px;line-height:2}
+    .side-credit strong{display:block;color:#0c8176;font-size:11px}
+    .content{min-width:0}
+    .mobile-nav{display:none}
+    .progress-wrap{display:flex;align-items:center;gap:13px;margin:0 5px 15px;color:#667b92;font-size:11px;font-weight:800}
+    .progress{height:8px;max-width:280px;flex:1;border-radius:20px;background:#dfe8f0;overflow:hidden}
+    .progress span{display:block;height:100%;width:11%;border-radius:20px;background:linear-gradient(90deg,#0d9b8b,#75d2ba,#81a9d0);transition:width .25s}
+    .slide{display:none;position:relative;overflow:hidden;min-height:670px;padding:clamp(25px,4vw,52px);background:#fff;border:1px solid #dce6ef;border-radius:var(--radius);box-shadow:var(--shadow);animation:enter .28s ease}
+    .slide.active{display:block}
+    .slide:not(.cover):before{content:"";position:absolute;top:0;right:0;width:190px;height:7px;border-radius:0 0 0 10px;background:linear-gradient(90deg,#85ddc7,#78a6d4,#b4a8ed)}
+    @keyframes enter{from{opacity:.45;transform:translateY(7px)}to{opacity:1;transform:none}}
+    .eyebrow{display:flex;align-items:center;gap:9px;margin-bottom:12px;color:#0b8e80;font-weight:900;font-size:12px}
+    .eyebrow:before{content:"";width:27px;height:3px;border-radius:5px;background:linear-gradient(90deg,#0b8e80,#80ddc5)}
+    h1,h2,h3,p{margin-top:0}
+    h1{color:#112747;font-size:clamp(27px,4.2vw,47px);line-height:1.55;letter-spacing:-1.1px;font-weight:950;margin-bottom:14px}
+    h2{color:#142d4d;font-size:clamp(23px,3.2vw,34px);line-height:1.6;font-weight:900;letter-spacing:-.6px;margin-bottom:15px}
+    h3{color:#193b5b;font-size:16px;font-weight:900;margin-bottom:8px}
+    p{color:#526980;line-height:2.05;margin-bottom:13px;font-size:14px}
+    .lead{font-size:16px;line-height:2.1;color:#516a81;max-width:740px}
+    .cover{background:radial-gradient(circle at 9% 12%,rgba(99,204,180,.18),transparent 25%),radial-gradient(circle at 89% 83%,rgba(119,166,211,.15),transparent 25%),linear-gradient(140deg,#fff,#f7fbff 60%,#f2fbf8)}
+    .cover:after{content:"";position:absolute;left:-120px;bottom:-170px;width:410px;height:410px;border-radius:50%;border:1px solid rgba(13,155,139,.12);box-shadow:0 0 0 30px rgba(13,155,139,.035),0 0 0 65px rgba(13,155,139,.025);pointer-events:none}
+    .cover-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;min-height:520px}
+    .cover-label{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:linear-gradient(100deg,#e2f7f0,#edf3fc);border:1px solid #d8eee8;color:#087b70;font-size:11px;font-weight:900;margin-bottom:17px}
+    .cover-title{max-width:760px}
+    .cover-title h1{max-width:750px}
+    .title-meta{font-size:13px;color:#667b91;line-height:2.2;max-width:760px}
+    .author-chip{display:inline-flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;margin-top:15px;background:#eaf8f3;border:1px solid #d3eee4;color:#08776d;font-size:12px;font-weight:900}
+    .author-star{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;background:#d2f0e5;color:#078477}
+    .cover-art{position:relative;overflow:hidden;min-height:420px;padding:25px;border-radius:30px;color:#fff;background:radial-gradient(circle at 78% 14%,rgba(119,222,198,.2),transparent 28%),linear-gradient(150deg,#112343,#1c4963 60%,#137365);box-shadow:0 25px 56px rgba(17,42,72,.22);border:1px solid rgba(255,255,255,.18)}
+    .cover-art:before,.cover-art:after{content:"";position:absolute;width:280px;height:280px;border:1px solid rgba(185,241,223,.2);border-radius:50%;left:-110px;top:-125px;pointer-events:none}
+    .cover-art:after{width:370px;height:370px;left:-154px;top:-170px}
+    .art-overline{position:relative;z-index:1;color:#a8e9d9;font-size:10px;font-weight:900;letter-spacing:1.2px}
+    .school-art{position:relative;z-index:1;width:100%;height:auto;max-height:250px;margin:9px auto 0;display:block;filter:drop-shadow(0 15px 20px rgba(0,0,0,.18))}
+    .art-caption{position:relative;z-index:1;margin-top:4px;color:#fff;font-weight:900;font-size:18px;line-height:1.8}
+    .art-small{position:relative;z-index:1;color:#cce4e7;font-size:11px;margin-top:8px}
+    .cover-stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
+    .cover-stat{padding:11px 8px;border:1px solid rgba(205,245,234,.17);border-radius:13px;background:rgba(255,255,255,.07);text-align:center}
+    .cover-stat strong{display:block;color:#a9ecd9;font-size:19px;line-height:1.5}
+    .cover-stat span{display:block;color:#d5e7eb;font-size:9px}
+    .info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:20px}
+    .info-card{position:relative;border:1px solid #e0eaf1;border-radius:18px;padding:18px;background:linear-gradient(145deg,#fff,#f9fcfe);box-shadow:0 7px 20px rgba(24,53,87,.035);transition:.2s}
+    .info-card:hover{transform:translateY(-3px);box-shadow:0 14px 27px rgba(24,53,87,.075);border-color:#cbe8df}
+    .icon-box{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-bottom:10px;color:#087f75;background:linear-gradient(135deg,#def6ee,#e9f1fd);font-size:20px}
+    .info-card p:last-child{margin-bottom:0}
+    .question-card{margin:20px 0;padding:24px;border-radius:21px;color:#fff;background:radial-gradient(circle at 10% 15%,rgba(117,222,197,.2),transparent 30%),linear-gradient(125deg,#122645,#1d4c64);box-shadow:0 17px 35px rgba(20,48,78,.15)}
+    .question-card small{display:block;color:#9fe5d3;font-size:11px;font-weight:900;margin-bottom:8px}
+    .question-card strong{display:block;font-size:20px;line-height:2;color:#fff}
+    .plain-callout{border-right:5px solid #0d9b8b;border-radius:14px;padding:16px 18px;margin:19px 0;background:linear-gradient(100deg,#eef9f5,#f4f8fc);color:#365f65;font-size:14px;line-height:2}
+    .plain-callout strong{color:#143c50}
+    .goal-list{display:grid;gap:11px;margin-top:15px}
+    .goal{display:flex;align-items:flex-start;gap:12px;padding:14px 15px;border:1px solid #e1eaf1;border-radius:15px;background:linear-gradient(100deg,#fff,#f9fcfe)}
+    .goal-num{width:31px;height:31px;flex:none;display:grid;place-items:center;border-radius:10px;background:linear-gradient(140deg,#e0f7ef,#e8f1fc);color:#078477;font-weight:950}
+    .goal span{color:#435c73;font-size:13px;line-height:1.95}
+    .question-list{display:grid;gap:9px;margin:0;padding:0;list-style:none;counter-reset:q}
+    .question-list li{counter-increment:q;display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border-radius:13px;background:#f6f9fc;color:#425a72;font-size:13px}
+    .question-list li:before{content:counter(q);width:24px;height:24px;flex:none;display:grid;place-items:center;border-radius:8px;background:#e2f5ef;color:#087d72;font-weight:900;font-size:11px}
+    .hypothesis{padding:18px 19px;border:1px solid #dcebe6;border-radius:16px;background:linear-gradient(110deg,#eff9f4,#f5f8fc);margin-top:15px}
+    .hypothesis b{display:block;color:#087c72;font-size:12px;margin-bottom:5px}
+    .hypothesis p{font-size:15px;font-weight:800;color:#203c55;margin:0}
+    .fact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+    .fact{border:1px solid #e0e9f1;border-radius:17px;padding:17px;background:linear-gradient(145deg,#fff,#f8fbfd)}
+    .fact-label{color:#788aa0;font-size:10px;font-weight:800;margin-bottom:5px}
+    .fact strong{display:block;color:#1b3b5b;font-size:15px;line-height:1.9}
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:22px 0}
+    .step{position:relative;text-align:center;padding:17px 12px;border:1px solid #dfebf1;border-radius:17px;background:linear-gradient(145deg,#fff,#f5f9fc);box-shadow:0 7px 17px rgba(24,53,87,.035)}
+    .step-icon{width:43px;height:43px;display:grid;place-items:center;margin:0 auto 10px;border-radius:14px;background:linear-gradient(135deg,#e1f7ef,#eaf1fc);color:#087f75;font-size:20px;font-weight:900}
+    .step b{display:block;color:#0a887b;font-size:12px;margin-bottom:5px}
+    .step span{display:block;color:#536a80;font-size:11px;line-height:1.85}
+    .check-list{display:grid;gap:9px;margin-top:14px}
+    .check-item{display:flex;gap:10px;align-items:flex-start;color:#455c73;font-size:12px;line-height:1.9}
+    .check{width:22px;height:22px;flex:none;border-radius:7px;background:#e3f7ef;color:#078476;display:grid;place-items:center;font-size:12px;font-weight:900}
+    .data-intro{color:#62778c;font-size:13px;margin-bottom:16px}
+    .table-card{padding:8px;border:1px solid #dce7ef;border-radius:20px;background:#fff;box-shadow:0 11px 27px rgba(24,53,87,.055);overflow-x:auto;margin-top:17px}
+    table{width:100%;min-width:570px;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden}
+    th,td{text-align:center;padding:15px 12px;font-size:13px;border-bottom:1px solid #e7eef3}
+    th{color:#173b5c;background:linear-gradient(100deg,#e7f5f1,#edf3fb);font-size:12px;font-weight:900}
+    tbody tr:nth-child(even){background:#f8fbfd}
+    tbody tr:last-child td{border-bottom:0}
+    td:first-child,th:first-child{text-align:right;padding-right:20px;font-weight:800}
+    .num-pill{display:inline-grid;min-width:39px;min-height:34px;place-items:center;padding:4px 9px;border-radius:10px;background:#edf3fa;color:#355675;font-weight:900}
+    .num-pill.after{background:#e2f6ef;color:#087c70}
+    .sum-row td{background:#f0f6fa;color:#1e405e;font-weight:900}
+    .avg-row td{background:#e8f7f1;color:#126e65;font-weight:900}
+    .table-note{display:flex;gap:9px;align-items:flex-start;margin-top:14px;padding:13px 15px;border-radius:13px;background:#f3f8fb;color:#526c82;font-size:11px;line-height:1.9}
+    .table-note i{font-style:normal;color:#0b9183;font-size:17px;flex:none}
+    .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+    .summary{position:relative;overflow:hidden;border:1px solid #e0e9f0;border-radius:17px;padding:17px;background:linear-gradient(145deg,#fff,#f7fafc);box-shadow:0 8px 20px rgba(24,53,87,.045)}
+    .summary:after{content:"";position:absolute;left:-22px;bottom:-31px;width:84px;height:84px;border-radius:50%;background:rgba(105,202,179,.10)}
+    .summary:nth-child(2):after{background:rgba(125,166,206,.13)}.summary:nth-child(3):after{background:rgba(171,159,225,.13)}
+    .summary small{display:block;color:#71839a;font-size:10px;font-weight:800;margin-bottom:6px}
+    .summary strong{position:relative;z-index:1;display:block;font-size:29px;color:#173653;line-height:1.4}
+    .summary em{font-style:normal;color:#6b7f93;font-size:10px}
+    .chart-card{padding:20px;border-radius:20px;border:1px solid #dfe9f0;background:linear-gradient(145deg,#fff,#f8fbfd);box-shadow:0 9px 25px rgba(24,53,87,.045);margin-top:18px}
+    .chart-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    .chart-head h3{margin:0}
+    .legend{display:flex;gap:14px;align-items:center;color:#687d92;font-size:11px;font-weight:700}
+    .legend span{display:flex;align-items:center;gap:6px}
+    .legend i{width:10px;height:10px;border-radius:4px;display:inline-block}
+    .chart-svg{width:100%;height:auto;display:block;overflow:visible}
+    .chart-explain{margin-top:13px;padding:13px 15px;border-radius:13px;background:linear-gradient(100deg,#eef8f5,#f4f8fc);color:#425f74;font-size:12px;line-height:2}
+    .chart-explain strong{color:#126f67}
+    .conclusion-card{border-radius:21px;padding:22px;background:radial-gradient(circle at 10% 5%,rgba(123,225,197,.18),transparent 30%),linear-gradient(125deg,#132847,#1d5364);color:white;box-shadow:0 18px 37px rgba(18,43,73,.17)}
+    .conclusion-card small{color:#a8e7d6;font-weight:900;font-size:11px}
+    .conclusion-card h3{color:#fff;font-size:22px;margin:8px 0}
+    .conclusion-card p{color:#d3e7eb;font-size:14px;margin:0;line-height:2.1}
+    .two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+    .closing{position:relative;overflow:hidden;margin-top:22px;padding:26px;border-radius:23px;background:radial-gradient(circle at 10% 8%,rgba(135,231,205,.17),transparent 27%),linear-gradient(125deg,#10213f,#1b4b62 65%,#116a60);color:white;box-shadow:0 18px 38px rgba(16,40,66,.18)}
+    .closing h3{color:#fff;font-size:24px;margin-bottom:5px}
+    .closing p{color:#d5e8ec;margin:0}
+    .closing .signature{margin-top:17px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);color:#a9e9d8;font-size:13px;font-weight:900}
+    .slide-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:30px;padding-top:17px;border-top:1px solid #e6edf2}
+    .slide-footer small{color:#7b8da1;font-size:10px}
+    .footer-buttons{display:flex;gap:8px}
+    .toast{position:fixed;bottom:20px;left:20px;z-index:60;opacity:0;pointer-events:none;transform:translateY(10px);transition:.25s;padding:11px 15px;background:#142b4a;color:#fff;border-radius:12px;font-size:12px;box-shadow:0 12px 26px rgba(17,41,69,.2)}
+    .toast.show{opacity:1;transform:none}
+    @media(max-width:1020px){.shell{grid-template-columns:1fr}.sidebar{display:none}.mobile-nav{display:flex;gap:7px;overflow-x:auto;margin-bottom:13px;padding:0 0 7px}.mobile-nav .nav-btn{width:auto;white-space:nowrap;background:#fff;border:1px solid #dce6ef;padding:8px 11px}.mobile-nav .nav-btn.active{background:#e5f6f1;border-color:#c7e9e3}.cover-grid{grid-template-columns:1fr}.cover-art{min-height:350px}.slide{min-height:unset}}
+    @media(max-width:650px){.topbar{padding:9px 12px;min-height:64px}.brand{font-size:12px}.brand-mark{width:37px;height:37px}.brand small{font-size:9px}.top-actions .btn{padding:8px 10px;font-size:10px}.shell{padding:0 11px;margin:17px auto}.slide{padding:22px 16px;border-radius:19px}.info-grid,.fact-grid,.two-col{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.summary-grid{grid-template-columns:1fr}.question-card strong{font-size:17px}.cover-art{min-height:310px;padding:19px}.cover-stats{gap:6px}.cover-stat{padding:9px 5px}.cover-stat strong{font-size:16px}.slide-footer{align-items:flex-start;flex-direction:column}.footer-buttons{width:100%}.footer-buttons .btn{flex:1}.chart-card{padding:12px}.chart-head{align-items:flex-start}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+    @media print{
+      @page{size:A4 landscape;margin:10mm}
+      body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .topbar,.sidebar,.mobile-nav,.progress-wrap,.slide-footer,.toast{display:none!important}
+      .shell{display:block;margin:0;padding:0;max-width:none}.content{width:100%}
+      .slide,.slide.active{display:block!important;min-height:0;padding:9mm 7mm;margin:0;border:0;border-radius:0;box-shadow:none;page-break-after:always;break-after:page;animation:none}
+      .slide:last-child{page-break-after:auto;break-after:auto}
+      .cover-grid{min-height:0}.cover-art{min-height:300px}
+      .info-card,.chart-card,.table-card,.conclusion-card,.closing{break-inside:avoid}
+      h1{font-size:27pt}h2{font-size:21pt}p{font-size:10pt}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">✳</div><div>پژوهش پاکیزگی مدرسه<small>تفکر و سبک زندگی · پایه هفتم · برنامه‌نویس: رایبد وظیفه‌شناس</small></div></div>
+    <div class="top-actions">
+      <button class="btn btn-ghost" id="presentBtn" type="button">⛶ حالت ارائه</button>
+      <button class="btn btn-light" id="printBtn" type="button">▤ چاپ و PDF</button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="side-title">فهرست بخش‌های پژوهش</div>
+      <nav class="nav-list" id="sideNav" aria-label="فهرست پژوهش"></nav>
+      <div class="side-credit">ارائه پژوهش درس تفکر و سبک زندگی<strong>برنامه‌نویس: رایبد وظیفه‌شناس</strong>برای جابه‌جایی بین صفحه‌ها از کلیدهای جهت‌نما هم استفاده کن.</div>
+    </aside>
+
+    <main class="content">
+      <nav class="mobile-nav" id="mobileNav" aria-label="فهرست بخش‌ها"></nav>
+      <div class="progress-wrap"><span id="progressLabel">بخش ۱ از ۹</span><div class="progress"><span id="progressBar"></span></div><span id="progressPercent">۱۱٪</span></div>
+
+      <!-- 1. Cover -->
+      <section class="slide cover active" data-title="صفحه عنوان">
+        <div class="cover-grid">
+          <div class="cover-title">
+            <div class="cover-label">✦ پژوهش مشاهده‌ای</div>
+            <div class="eyebrow">درس تفکر و سبک زندگی · پایه هفتم</div>
+            <h1>مقایسه پاکیزگی حیاط مدرسه<br>قبل و بعد از زنگ تفریح</h1>
+            <p class="lead">بررسی تعداد زباله‌های روی زمین در حیاط مدرسه تیزهوشان شهید بهشتی</p>
+            <div class="title-meta">آبان‌ماه ۱۴۰۵ · سال تحصیلی ۱۴۰۵–۱۴۰۶</div>
+            <div class="author-chip"><span class="author-star">✦</span> پژوهشگر و برنامه‌نویس: رایبد وظیفه‌شناس</div>
+          </div>
+          <div class="cover-art" aria-label="تصویر نمادین حیاط مدرسه پاکیزه">
+            <div class="art-overline">SCHOOL ENVIRONMENT · FIELD STUDY</div>
+            <svg class="school-art" viewBox="0 0 420 280" role="img" aria-label="مدرسه، درخت و سطل زباله">
+              <defs>
+                <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8f3ed"/><stop offset="1" stop-color="#9fd7d4"/></linearGradient>
+                <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5fff9"/><stop offset="1" stop-color="#bce4d8"/></linearGradient>
+                <linearGradient id="bin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7de0c2"/><stop offset="1" stop-color="#159b88"/></linearGradient>
+              </defs>
+              <circle cx="332" cy="57" r="34" fill="#ffe39e" opacity=".95"/>
+              <path d="M18 221 Q100 198 205 216 T402 210" fill="none" stroke="#77d6ba" stroke-width="5" stroke-linecap="round"/>
+              <path d="M48 210 V112 L147 56 L246 112 V210Z" fill="url(#wall)" stroke="#d9fff1" stroke-width="4"/>
+              <path d="M35 115 L147 48 L259 115" fill="none" stroke="#f5fff9" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="78" y="132" width="39" height="43" rx="6" fill="#5685a2"/><rect x="129" y="132" width="39" height="43" rx="6" fill="#5685a2"/>
+              <path d="M91 132 V175 M78 153 H117 M142 132 V175 M129 153 H168" stroke="#b8edf0" stroke-width="3"/>
+              <rect x="181" y="128" width="39" height="82" rx="7" fill="#315d76"/><circle cx="210" cy="170" r="3" fill="#f3d98d"/>
+              <path d="M294 218 V145" stroke="#b6d99c" stroke-width="11" stroke-linecap="round"/>
+              <circle cx="294" cy="119" r="42" fill="#51b48e"/><circle cx="266" cy="132" r="28" fill="#6cc9a5"/><circle cx="322" cy="137" r="27" fill="#318e7a"/>
+              <path d="M347 170 H389 L382 218 H354Z" fill="url(#bin)" stroke="#dbfff1" stroke-width="3"/><path d="M341 165 H395" stroke="#d9fff1" stroke-width="8" stroke-linecap="round"/><path d="M360 183 V205 M375 183 V205" stroke="#edfff8" stroke-width="3" stroke-linecap="round"/>
+              <path d="M25 225 H403" stroke="#b8eddd" stroke-width="4" stroke-linecap="round"/>
+              <path d="M25 201 q10 -21 20 0 M42 201 q10 -25 20 0" fill="none" stroke="#7cdbbb" stroke-width="3" stroke-linecap="round"/>
+              <path d="M256 232 l9 -7 8 7 -8 6Z" fill="#f7d994"/><path d="M273 236 l6 -5 6 5 -6 5Z" fill="#c6e7fa"/>
+            </svg>
+            <div class="art-caption">مدرسه‌ای تمیز، محیطی دل‌نشین</div>
+            <div class="art-small">مشاهده · شمارش · مقایسه</div>
+            <div class="cover-stats"><div class="cover-stat"><strong>۳ روز</strong><span>مشاهده</span></div><div class="cover-stat"><strong>۲ زمان</strong><span>قبل و بعد</span></div><div class="cover-stat"><strong>۱ محدوده</strong><span>ثابت</span></div></div>
+          </div>
+        </div>
+        <div class="slide-footer"><small>پژوهشگر: رایبد وظیفه‌شناس</small><div class="footer-buttons"><button class="btn btn-primary next-btn">شروع ارائه ←</button></div></div>
+      </section>
+
+      <!-- 2. Problem and question -->
+      <section class="slide" data-title="مسئله و سؤال پژوهش">
+        <div class="eyebrow">۰۲ · مسئله پژوهش</div>
+        <h2>چه چیزی را می‌خواهم بررسی کنم؟</h2>
+        <p>دانش‌آموزان در زنگ تفریح از حیاط مدرسه استفاده می‌کنند. گاهی پس از زنگ، کاغذ یا بسته‌بندی خوراکی روی زمین باقی می‌ماند.</p>
+        <p>می‌خواهم با نگاه‌کردن و شمردن زباله‌ها، وضعیت حیاط را قبل و بعد از زنگ تفریح مقایسه کنم.</p>
+        <div class="question-card"><small>سؤال اصلی پژوهش</small><strong>آیا تعداد زباله‌های روی زمین، قبل و بعد از زنگ تفریح فرق می‌کند؟</strong></div>
+        <div class="info-grid">
+          <div class="info-card"><div class="icon-box">⌕</div><h3>چه چیزی را می‌شمارم؟</h3><p>کاغذ، دستمال و بسته‌بندی‌هایی که روی زمین افتاده‌اند.</p></div>
+          <div class="info-card"><div class="icon-box">◎</div><h3>کجا را بررسی می‌کنم؟</h3><p>یک قسمت مشخص از حیاط مدرسه که در هر دو زمان یکسان باشد.</p></div>
+        </div>
+        <div class="slide-footer"><small>موضوع پژوهش با مشاهده مستقیم بررسی می‌شود.</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 3. Importance and goals -->
+      <section class="slide" data-title="اهمیت و هدف‌ها">
+        <div class="eyebrow">۰۳ · اهمیت و هدف‌ها</div>
+        <h2>چرا این موضوع مهم است؟</h2>
+        <p>حیاط تمیز، محیط مدرسه را زیباتر و استفاده از آن را دل‌پذیرتر می‌کند. با این بررسی می‌توانیم وضعیت یک قسمت از حیاط را بهتر بشناسیم.</p>
+        <div class="plain-callout"><strong>هدف کلی:</strong> مقایسه پاکیزگی حیاط مدرسه قبل و بعد از زنگ تفریح.</div>
+        <h3>سه هدف جزئی</h3>
+        <div class="goal-list">
+          <div class="goal"><b class="goal-num">۱</b><span>شمردن زباله‌های روی زمین قبل از زنگ تفریح.</span></div>
+          <div class="goal"><b class="goal-num">۲</b><span>شمردن زباله‌های روی زمین بعد از زنگ تفریح.</span></div>
+          <div class="goal"><b class="goal-num">۳</b><span>مقایسه دو عدد و بررسی تفاوت آن‌ها.</span></div>
+        </div>
+        <div class="slide-footer"><small>هدف‌ها به سؤال اصلی پژوهش پاسخ می‌دهند.</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 4. Sub questions and hypothesis -->
+      <section class="slide" data-title="پرسش‌های فرعی و فرضیه">
+        <div class="eyebrow">۰۴ · پرسش‌ها و پیش‌بینی</div>
+        <h2>چه پرسش‌هایی دارم؟</h2>
+        <ol class="question-list">
+          <li>قبل از زنگ تفریح چند زباله روی زمین دیده می‌شود؟</li>
+          <li>بعد از زنگ تفریح چند زباله روی زمین دیده می‌شود؟</li>
+          <li>در کدام زمان تعداد زباله‌ها بیشتر است؟</li>
+        </ol>
+        <div class="hypothesis"><b>فرضیه پژوهش</b><p>پیش‌بینی می‌کنم بعد از زنگ تفریح، تعداد زباله‌های روی زمین بیشتر باشد.</p></div>
+        <div class="slide-footer"><small>فرضیه، پیش‌بینی پیش از بررسی نتیجه‌هاست.</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 5. Method and scope -->
+      <section class="slide" data-title="روش و محدوده پژوهش">
+        <div class="eyebrow">۰۵ · روش پژوهش</div>
+        <h2>پژوهش را کجا و چگونه انجام می‌دهم؟</h2>
+        <div class="fact-grid">
+          <div class="fact"><div class="fact-label">روش پژوهش</div><strong>مشاهده مستقیم و شمارش</strong></div>
+          <div class="fact"><div class="fact-label">محل بررسی</div><strong>حیاط مدرسه تیزهوشان شهید بهشتی</strong></div>
+          <div class="fact"><div class="fact-label">محدوده مشاهده</div><strong>یک قسمت ثابت از حیاط، حدود ۱۰ در ۱۰ متر</strong></div>
+          <div class="fact"><div class="fact-label">وسایل موردنیاز</div><strong>برگه، خودکار و ساعت</strong></div>
+        </div>
+        <div class="plain-callout"><strong>چه چیزی زباله حساب می‌شود؟</strong> هر کاغذ، دستمال یا بسته‌بندی رهاشده روی زمین. زباله‌های داخل سطل شمرده نمی‌شوند.</div>
+        <div class="slide-footer"><small>در هر دو زمان، یک محدوده یکسان بررسی می‌شود.</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 6. Steps -->
+      <section class="slide" data-title="مراحل انجام پژوهش">
+        <div class="eyebrow">۰۶ · مراحل اجرا</div>
+        <h2>مراحل انجام کار</h2>
+        <p>برای اینکه مقایسه درست باشد، مراحل را هر بار به یک روش انجام می‌دهم.</p>
+        <div class="steps">
+          <div class="step"><div class="step-icon">⌖</div><b>گام اول</b><span>انتخاب یک قسمت مشخص از حیاط</span></div>
+          <div class="step"><div class="step-icon">①</div><b>گام دوم</b><span>شمردن زباله‌ها قبل از زنگ</span></div>
+          <div class="step"><div class="step-icon">②</div><b>گام سوم</b><span>شمردن زباله‌ها بعد از زنگ</span></div>
+          <div class="step"><div class="step-icon">▤</div><b>گام چهارم</b><span>نوشتن عددها و مقایسه آن‌ها</span></div>
+        </div>
+        <h3>برای دقت بیشتر:</h3>
+        <div class="check-list">
+          <div class="check-item"><span class="check">✓</span><span>هر بار همان قسمت از حیاط را بررسی می‌کنم.</span></div>
+          <div class="check-item"><span class="check">✓</span><span>مشاهده را در سه روز تکرار می‌کنم.</span></div>
+          <div class="check-item"><span class="check">✓</span><span>اگر بین دو مشاهده حیاط نظافت شد، آن را در نظر می‌گیرم.</span></div>
+          <div class="check-item"><span class="check">✓</span><span>به زباله‌ها دست نمی‌زنم و از دانش‌آموزان عکس نمی‌گیرم.</span></div>
+        </div>
+        <div class="slide-footer"><small>مشاهده باید در شرایطی تا حد امکان یکسان انجام شود.</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 7. Data table -->
+      <section class="slide" data-title="جدول اطلاعات">
+        <div class="eyebrow">۰۷ · جدول مشاهده‌ها</div>
+        <h2>جدول تعداد زباله‌ها</h2>
+        <p class="data-intro">تعداد زباله‌های روی زمین در سه روز و در دو زمان ثبت شده است.</p>
+        <div class="table-card">
+          <table aria-label="جدول مقایسه تعداد زباله‌ها">
+            <thead><tr><th>روز مشاهده</th><th>قبل از زنگ تفریح</th><th>بعد از زنگ تفریح</th></tr></thead>
+            <tbody>
+              <tr><td>روز اول</td><td><span class="num-pill">۴</span></td><td><span class="num-pill after">۱۱</span></td></tr>
+              <tr><td>روز دوم</td><td><span class="num-pill">۳</span></td><td><span class="num-pill after">۱۳</span></td></tr>
+              <tr><td>روز سوم</td><td><span class="num-pill">۵</span></td><td><span class="num-pill after">۱۲</span></td></tr>
+              <tr class="sum-row"><td>مجموع</td><td>۱۲</td><td>۳۶</td></tr>
+              <tr class="avg-row"><td>میانگین</td><td>۴</td><td>۱۲</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-note"><i>●</i><span>عددها، تعداد زباله‌های شمرده‌شده در محدوده انتخاب‌شده را نشان می‌دهند. زباله‌های داخل سطل در شمارش نیامده‌اند.</span></div>
+        <div class="slide-footer"><small>واحد شمارش: تعداد زباله</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 8. Chart and analysis -->
+      <section class="slide" data-title="نمودار و بررسی داده‌ها">
+        <div class="eyebrow">۰۸ · نمودار و بررسی</div>
+        <h2>مقایسه با نمودار</h2>
+        <p>در نمودار، ستون آبی تعداد زباله‌ها قبل از زنگ و ستون سبز تعداد آن‌ها بعد از زنگ را نشان می‌دهد.</p>
+        <div class="summary-grid">
+          <div class="summary"><small>میانگین قبل از زنگ</small><strong>۴</strong><em>عدد</em></div>
+          <div class="summary"><small>میانگین بعد از زنگ</small><strong>۱۲</strong><em>عدد</em></div>
+          <div class="summary"><small>اختلاف میانگین</small><strong>۸</strong><em>عدد بیشتر</em></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-head"><h3>تعداد زباله‌ها در هر روز</h3><div class="legend"><span><i style="background:#7da6ce"></i>قبل از زنگ</span><span><i style="background:#0d9b8b"></i>بعد از زنگ</span></div></div>
+          <svg class="chart-svg" viewBox="0 0 900 405" role="img" aria-label="نمودار تعداد زباله‌ها قبل و بعد از زنگ تفریح در سه روز">
+            <defs>
+              <linearGradient id="barBefore" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9bbbd8"/><stop offset="1" stop-color="#648bb5"/></linearGradient>
+              <linearGradient id="barAfter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46c5a8"/><stop offset="1" stop-color="#078476"/></linearGradient>
+              <filter id="barShadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#284969" flood-opacity=".13"/></filter>
+            </defs>
+            <g stroke="#e4ebf1" stroke-width="2">
+              <line x1="105" y1="55" x2="850" y2="55"/><line x1="105" y1="115" x2="850" y2="115"/><line x1="105" y1="175" x2="850" y2="175"/><line x1="105" y1="235" x2="850" y2="235"/><line x1="105" y1="295" x2="850" y2="295"/><line x1="105" y1="355" x2="850" y2="355"/>
+            </g>
+            <g fill="#71859a" font-size="17" text-anchor="end" font-family="Vazirmatn, Tahoma, sans-serif">
+              <text x="87" y="61">۱۵</text><text x="87" y="121">۱۲</text><text x="87" y="181">۹</text><text x="87" y="241">۶</text><text x="87" y="301">۳</text><text x="87" y="361">۰</text>
+            </g>
+            <g filter="url(#barShadow)">
+              <rect x="205" y="275" width="58" height="80" rx="10" fill="url(#barBefore)"/><rect x="278" y="135" width="58" height="220" rx="10" fill="url(#barAfter)"/>
+              <rect x="435" y="295" width="58" height="60" rx="10" fill="url(#barBefore)"/><rect x="508" y="95" width="58" height="260" rx="10" fill="url(#barAfter)"/>
+              <rect x="665" y="255" width="58" height="100" rx="10" fill="url(#barBefore)"/><rect x="738" y="115" width="58" height="240" rx="10" fill="url(#barAfter)"/>
+            </g>
+            <g fill="#29445f" font-size="18" font-weight="800" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif">
+              <text x="234" y="263">۴</text><text x="307" y="123">۱۱</text><text x="464" y="283">۳</text><text x="537" y="83">۱۳</text><text x="694" y="243">۵</text><text x="767" y="103">۱۲</text>
+            </g>
+            <g fill="#536d84" font-size="18" font-weight="800" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif">
+              <text x="270" y="389">روز اول</text><text x="500" y="389">روز دوم</text><text x="730" y="389">روز سوم</text>
+            </g>
+          </svg>
+        </div>
+        <div class="chart-explain"><strong>بررسی:</strong> میانگین قبل از زنگ ۴ عدد و میانگین بعد از زنگ ۱۲ عدد است. در این جدول، میانگین بعد از زنگ ۸ عدد بیشتر است.</div>
+        <div class="slide-footer"><small>نمودار، داده‌های جدول را به شکل تصویری نشان می‌دهد.</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary next-btn">بعدی ←</button></div></div>
+      </section>
+
+      <!-- 9. Conclusion and suggestions -->
+      <section class="slide" data-title="نتیجه و پیشنهادها">
+        <div class="eyebrow">۰۹ · نتیجه‌گیری</div>
+        <h2>نتیجه پژوهش چیست؟</h2>
+        <div class="conclusion-card"><small>پاسخ به سؤال اصلی</small><h3>بعد از زنگ تفریح، زباله‌های بیشتری روی زمین دیده شده است.</h3><p>میانگین تعداد زباله‌ها قبل از زنگ ۴ عدد و بعد از زنگ ۱۲ عدد بوده است. بنابراین در این بررسی، پیش‌بینی پژوهش با نتیجه جدول هماهنگ است.</p></div>
+        <div class="two-col">
+          <div class="info-card"><div class="icon-box">✦</div><h3>پیشنهادها</h3><p>۱. زباله‌ها را در سطل بیندازیم.<br>۲. سطل زباله در جای مناسب باشد.<br>۳. پاکیزگی مدرسه را به یک عادت تبدیل کنیم.</p></div>
+          <div class="info-card"><div class="icon-box">⌖</div><h3>محدودیت‌های پژوهش</h3><p>۱. فقط یک قسمت از حیاط بررسی شده است.<br>۲. مشاهده در سه روز انجام شده است.<br>۳. شرایط روزها ممکن است با هم فرق داشته باشد.</p></div>
+        </div>
+        <div class="closing"><h3>سپاس از توجه شما 🌱</h3><p>برای داشتن مدرسه‌ای تمیزتر، هرکدام از ما می‌توانیم سهمی داشته باشیم.</p><div class="signature">پژوهشگر و برنامه‌نویس: رایبد وظیفه‌شناس</div></div>
+        <div class="slide-footer"><small>پایان ارائه</small><div class="footer-buttons"><button class="btn btn-outline prev-btn">→ قبلی</button><button class="btn btn-primary" id="restartBtn">بازگشت به آغاز ↻</button></div></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      'use strict';
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const navs = [document.getElementById('sideNav'), document.getElementById('mobileNav')];
+      const progressBar = document.getElementById('progressBar');
+      let current = 0;
+      const fa = value => new Intl.NumberFormat('fa-IR').format(value);
+
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      function buildNavigation() {
+        navs.forEach(nav => {
+          if (!nav) return;
+          nav.innerHTML = '';
+          slides.forEach((slide, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'nav-btn' + (index === current ? ' active' : '');
+            button.innerHTML = `<span class="nav-num">${fa(index + 1)}</span><span>${slide.dataset.title || `بخش ${fa(index + 1)}`}</span>`;
+            button.addEventListener('click', () => go(index));
+            nav.appendChild(button);
+          });
+        });
+      }
+
+      function go(index) {
+        current = Math.max(0, Math.min(slides.length - 1, index));
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+        navs.forEach(nav => {
+          if (!nav) return;
+          Array.from(nav.children).forEach((button, i) => button.classList.toggle('active', i === current));
+        });
+        const percent = Math.round(((current + 1) / slides.length) * 100);
+        progressBar.style.width = percent + '%';
+        document.getElementById('progressLabel').textContent = `بخش ${fa(current + 1)} از ${fa(slides.length)}`;
+        document.getElementById('progressPercent').textContent = fa(percent) + '٪';
+        if (window.matchMedia('(max-width: 1020px)').matches) window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.addEventListener('click', event => {
+        if (event.target.closest('.next-btn')) go(current + 1);
+        if (event.target.closest('.prev-btn')) go(current - 1);
+      });
+
+      document.addEventListener('keydown', event => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+        if (event.key === 'ArrowLeft' || event.key === 'PageDown' || event.key === ' ') {
+          event.preventDefault(); go(current + 1);
+        }
+        if (event.key === 'ArrowRight' || event.key === 'PageUp') {
+          event.preventDefault(); go(current - 1);
+        }
+        if (event.key === 'Home') go(0);
+        if (event.key === 'End') go(slides.length - 1);
+      });
+
+      document.getElementById('printBtn').addEventListener('click', () => window.print());
+      document.getElementById('presentBtn').addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+          else await document.exitFullscreen();
+        } catch (error) {
+          showToast('حالت تمام‌صفحه در این مرورگر فعال نشد.');
+        }
+      });
+      document.getElementById('restartBtn').addEventListener('click', () => go(0));
+
+      buildNavigation();
+      go(0);
+    })();
+  </script>
+</body>
+</html>
